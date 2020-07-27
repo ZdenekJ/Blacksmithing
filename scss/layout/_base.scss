@@ -1,0 +1,24 @@
+@import '../helpers/all';
+
+:root {
+  --background-color-main: #f5f1e3;
+  --text-color-main: #333;
+  --border-color-main: #a74;
+  --menu-home-color: #320e57;
+  --menu-gallery-color: #ba262a;
+  --menu-creations-color: #905200;
+  --menu-guestbook-color: #2f4500;
+  --menu-blog-color: #20446d;
+  --menu-contact-color: #ffc0cb;
+}
+html,
+body{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+*,
+::after,
+::before{
+  box-sizing: inherit;
+}

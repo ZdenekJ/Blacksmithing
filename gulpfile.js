@@ -2,7 +2,7 @@
 
 // Základní nastavení
 const scssDir = './scss/';			// Zdrojový adresář s SCSS soubory
-const cssDir = './public/css/';				// Adresář pro výstupní CSS
+const cssDir = './static/css/';				// Adresář pro výstupní CSS
 
 // Nastavení adresářů pro watcher
 const mainDir = scssDir;

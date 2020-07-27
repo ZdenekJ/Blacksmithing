@@ -1,3 +1,7 @@
 export default {
-  target: 'static'
+  target: 'static',
+  css: [
+      // CSS file in the project
+      '@/static/css/main.css',
+    ]
 }
