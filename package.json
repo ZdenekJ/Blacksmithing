@@ -2,7 +2,10 @@
   "name": "blacksmithing",
   "version": "0.1.0",
   "scripts": {
-    "dev": "nuxt"
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt build && nuxt export"
   },
   "browserslist": [
     "> 1%",
@@ -17,6 +20,7 @@
     "gulp-autoprefixer": "^7.0.1",
     "gulp-clean-css": "^4.3.0",
     "gulp-dart-sass": "^1.0.2",
-    "gulp-sourcemaps": "^2.6.5"
+    "gulp-sourcemaps": "^2.6.5",
+    "sass-loader": "^9.0.2"
   }
 }
