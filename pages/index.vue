@@ -1,3 +1,6 @@
 <template>
-  <h1>Hello world!</h1>
+  <div>
+  <h1>Blacksmithing</h1>
+  <nuxt-link to="/shouldering">Shouldering</nuxt-link>
+  </div>
 </template>
