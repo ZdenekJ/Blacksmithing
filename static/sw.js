@@ -1,42 +1,33 @@
-'use strict';
+self.addEventListener('install', function (event) {
 
-const CACHE = 'cache-and-update';
-
-self.addEventListener('install', function (evt) {
-  console.log('The service worker is being installed.');
-
-  evt.waitUntil(precache());
+  const offlineRequest = new Request('offline.html');
+  event.waitUntil(
+      fetch(offlineRequest).then(function (response) {
+        return caches.open('offline').then(function (cache) {
+          console.log('[oninstall] Cached offline page', response.url);
+          return cache.put(offlineRequest, response);
+        });
+      })
+  );
 });
 
-self.addEventListener('fetch', function (evt) {
-  console.log('The service worker is serving the asset.');
+self.addEventListener('fetch', function (event) {
 
-  evt.respondWith(fromCache(evt.request));
+  const request = event.request;
 
-  evt.waitUntil(update(evt.request));
+  if (request.method === 'GET')
+  {
+    event.respondWith(
+        fetch(request).catch(function (error) {
+
+          console.error(
+              '[onfetch] Failed. Serving cached offline fallback ' +
+              error
+          );
+          return caches.open('offline').then(function (cache) {
+            return cache.match('offline.html');
+          });
+        })
+    );
+  }
 });
-
-function precache() {
-  return caches.open(CACHE).then(function (cache) {
-    return cache.addAll([
-      './_nuxt',
-      './icons'
-    ]);
-  });
-}
-
-function fromCache(request) {
-  return caches.open(CACHE).then(function (cache) {
-    return cache.match(request).then(function (matching) {
-      return matching || Promise.reject('no-match');
-    });
-  });
-}
-
-function update(request) {
-  return caches.open(CACHE).then(function (cache) {
-    return fetch(request).then(function (response) {
-      return cache.put(request, response);
-    });
-  });
-}
