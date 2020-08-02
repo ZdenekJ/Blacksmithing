@@ -1,35 +1,40 @@
-self.addEventListener('install', function (event) {
+var CACHE = 'cache-and-update';
 
-  var offlineRequest = new Request('offline.html');
-  event.waitUntil(
-      fetch(offlineRequest).then(function (response) {
-        return caches.open('offline').then(function (cache) {
-          console.log('[oninstall] Cached offline page', response.url);
-          return cache.put(offlineRequest, response);
-        });
-      })
-  );
+self.addEventListener('install', function (evt) {
+  console.log('The service worker is being installed.');
+
+  evt.waitUntil(precache());
 });
 
-self.addEventListener('fetch', function (event) {
+self.addEventListener('fetch', function (evt) {
+  console.log('The service worker is serving the asset.');
 
-  var request = event.request;
+  evt.respondWith(fromCache(evt.request));
 
-  if (request.method === 'GET')
-  {
-
-    event.respondWith(
-        fetch(request).catch(function (error) {
-
-          console.error(
-              '[onfetch] Failed. Serving cached offline fallback ' +
-              error
-          );
-          return caches.open('offline').then(function (cache) {
-            return cache.match('offline.html');
-          });
-        })
-    );
-  }
-
+  evt.waitUntil(update(evt.request));
 });
+
+function precache() {
+  return caches.open(CACHE).then(function (cache) {
+    return cache.addAll([
+      './controlled.html',
+      './asset'
+    ]);
+  });
+}
+
+function fromCache(request) {
+  return caches.open(CACHE).then(function (cache) {
+    return cache.match(request).then(function (matching) {
+      return matching || Promise.reject('no-match');
+    });
+  });
+}
+
+function update(request) {
+  return caches.open(CACHE).then(function (cache) {
+    return fetch(request).then(function (response) {
+      return cache.put(request, response);
+    });
+  });
+}
