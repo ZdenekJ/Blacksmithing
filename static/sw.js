@@ -1,3 +1,5 @@
+'use strict';
+
 const CACHE = 'cache-and-update';
 
 self.addEventListener('install', function (evt) {
