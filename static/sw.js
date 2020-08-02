@@ -1,4 +1,4 @@
-var CACHE = 'cache-and-update';
+const CACHE = 'cache-and-update';
 
 self.addEventListener('install', function (evt) {
   console.log('The service worker is being installed.');
@@ -17,8 +17,8 @@ self.addEventListener('fetch', function (evt) {
 function precache() {
   return caches.open(CACHE).then(function (cache) {
     return cache.addAll([
-      './controlled.html',
-      './asset'
+      './_nuxt',
+      './icons'
     ]);
   });
 }
