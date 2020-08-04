@@ -1,10 +1,12 @@
 export default {
   target: 'static',
+  buildModules: [
+    '@nuxtjs/pwa',
+  ],
   css: [
     // CSS file in the project
     '@/static/css/main.css',
   ],
-
   head: {
     htmlAttrs: {
       lang: 'cz'

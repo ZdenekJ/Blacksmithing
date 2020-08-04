@@ -17,12 +17,5 @@
   <body {{ BODY_ATTRS }}>
   <noscript>Sorry, this page does not work without Javascript :(</noscript>
     {{ APP }}
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-          navigator.serviceWorker.register('/sw.js');
-        });
-      }
-    </script>
   </body>
 </html>
