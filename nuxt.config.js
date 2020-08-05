@@ -28,6 +28,12 @@ export default {
           handler: 'cacheFirst',
           method: 'GET',
           strategyOptions: {cacheableResponse: {statuses: [0, 200]}}
+        },
+        {
+          urlPattern: 'https://angry-mirzakhani-acff38.netlify.app/shouldering/.*',
+          handler: 'cacheFirst',
+          method: 'GET',
+          strategyOptions: {cacheableResponse: {statuses: [0, 200]}}
         }
       ]
     }
