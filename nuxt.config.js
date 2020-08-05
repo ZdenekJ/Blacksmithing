@@ -19,5 +19,17 @@ export default {
       // hid is used as unique identifier. Do not use `vmid` for it as it will not work
       {hid: 'description', name: 'description', content: 'Meta description'}
     ]
+  },
+  pwa: {
+    workbox: {
+      runtimeCaching: [
+        {
+          urlPattern: 'https://angry-mirzakhani-acff38.netlify.app/.*',
+          handler: 'cacheFirst',
+          method: 'GET',
+          strategyOptions: {cacheableResponse: {statuses: [0, 200]}}
+        }
+      ]
+    }
   }
 }
