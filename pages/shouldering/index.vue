@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <nuxt-link to="/">Home</nuxt-link>
     <h1>Osazení</h1>
     <h3>Varianty osazení</h3>
     <div class="variants">
