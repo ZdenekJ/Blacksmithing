@@ -8,36 +8,71 @@
            @click="setSquareToSquare"
            :class="{ 'variants__variant--selected' : isSquareToSquare }">H
         > H
+        <svg id="svg_s2s" viewBox="0 0 100 100"
+             xmlns="http://www.w3.org/2000/svg">
+          <rect class="outer" height="60" width="60" y="20" x="20"
+                fill-opacity="0" stroke-width="1.5" stroke="#000"/>
+          <rect class="inner" height="30" width="30" y="35" x="35"
+                fill-opacity="0" stroke-width="1.5" stroke="#000"/>
+        </svg>
       </div>
       <div class="variants__variant variants__variant--s2r"
            @click="setSquareToRound"
            :class="{ 'variants__variant--selected' : isSquareToRound }">H
         > K
+        <svg id="svg_s2r" viewBox="0 0 100 100"
+             xmlns="http://www.w3.org/2000/svg">
+          <rect class="outer" height="60" width="60" y="20" x="20"
+                fill-opacity="0" stroke-width="1.5" stroke="#000"/>
+          <ellipse stroke="#000" stroke-width="1.5" cx="50" cy="50"
+                   class="inner" rx="15" ry="15" fill-opacity="0"/>
+        </svg>
       </div>
       <div class="variants__variant variants__variant--r2s"
            @click="setRoundToSquare"
            :class="{ 'variants__variant--selected' : isRoundToSquare }">K
         > H
+        <svg id="svg_r2s" viewBox="0 0 100 100"
+             xmlns="http://www.w3.org/2000/svg">
+          <ellipse stroke="#000" stroke-width="1.5" cx="50" cy="50"
+                   class="outer" rx="30" ry="30" fill-opacity="0"/>
+          <rect class="inner" height="30" width="30" y="35" x="35"
+                fill-opacity="0" stroke-width="1.5" stroke="#000"/>
+        </svg>
       </div>
       <div class="variants__variant variants__variant--r2r"
            @click="setRoundToRound"
            :class="{ 'variants__variant--selected' : isRoundToRound }">K >
         K
+        <svg id="svg_r2r" viewBox="0 0 100 100"
+             xmlns="http://www.w3.org/2000/svg">
+          <ellipse stroke="#000" stroke-width="1.5" cx="50" cy="50"
+                   class="outer" rx="30" ry="30" fill-opacity="0"/>
+          <ellipse stroke="#000" stroke-width="1.5" cx="50" cy="50"
+                   class="inner" rx="15" ry="15" fill-opacity="0"/>
+        </svg>
       </div>
     </div>
-    <div class="sketch">
-      <div class="sketch__original"><span class="desc">{{ materialSizeDesc }}</span></div>
-      <div class="sketch__offset"><span class="desc">{{ materialOffsetDesc }}</span></div>
-      <div class="sketch__new"><span class="desc desc--length">{{ finalLengthDesc }}</span><span class="desc desc--size">{{ finalSizeDesc }}</span></div>
-    </div>
+    <svg class="sketch" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
+      <rect class="sketch__offset" height="48" width="30" y="10" x="163" stroke-opacity="null" fill-opacity="0" stroke-width="1.5" stroke="#333" stroke-dasharray="6,6" fill="#fff"/>
+      <rect class="sketch__new" height="48" width="112" y="10" x="51" stroke-opacity="null" fill-opacity="0" stroke-width="1.5" stroke="#000" fill="#fff"/>
+      <rect class="sketch__original" height="20" width="86" y="24" x="163" stroke-opacity="null" fill-opacity="0" stroke-width="1.5" stroke="#000" fill="#fff"/>
+
+      <text class="sketch__descSizeOriginal" y="42" x="25" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">{{ materialSizeDesc }}</text>
+      <text class="sketch__descSizeFinal" y="42" x="260" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">{{ finalSizeDesc }}</text>
+      <text class="sketch__descLengthFinal" y="20" x="214" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">{{ finalLengthDesc }}</text>
+      <text class="sketch__descOffset" y="84" x="172" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">{{ materialOffsetDesc }}</text>
+    </svg>
     <div class="inputs">
       <div class="inputs__item">
         <div class="inputs__desc">{{ materialSizeDesc }}</div>
-        <InputPlusMinus :min="finalSize" v-model="materialSize"></InputPlusMinus>
+        <InputPlusMinus :min="finalSize"
+                        v-model="materialSize"></InputPlusMinus>
       </div>
       <div class="inputs__item">
         <div class="inputs__desc">{{ finalSizeDesc }}</div>
-        <InputPlusMinus :min="1" :max="materialSize" v-model="finalSize"></InputPlusMinus>
+        <InputPlusMinus :min="1" :max="materialSize"
+                        v-model="finalSize"></InputPlusMinus>
       </div>
       <div class="inputs__item">
         <div class="inputs__desc">{{ finalLengthDesc }}</div>
@@ -56,229 +91,179 @@
 </template>
 
 <script>
-  import InputPlusMinus from "@/components/InputPlusMinus";
+import InputPlusMinus from "@/components/InputPlusMinus";
 
-  export default {
-    name: 'App',
-    components: {
-      InputPlusMinus
+export default {
+  name: 'App',
+  components: {
+    InputPlusMinus
+  },
+  data() {
+    return {
+      materialSize: 20,
+      finalSize: 10,
+      finalLength: 30,
+      isSquareToSquare: true,
+      isSquareToRound: false,
+      isRoundToSquare: false,
+      isRoundToRound: false,
+      materialSizeDesc: "H",
+      materialOffsetDesc: "L",
+      finalSizeDesc: "h",
+      finalLengthDesc: "l"
+    }
+  },
+  computed: {
+    roundToRoundOffset() {
+      let num = (this.finalSize * this.finalSize) / (this.materialSize * this.materialSize) * this.finalLength;
+      return Math.round((num + Number.EPSILON) * 100) / 100;
     },
-    data() {
-      return {
-        materialSize: 20,
-        finalSize: 10,
-        finalLength: 30,
-        isSquareToSquare: true,
-        isSquareToRound: false,
-        isRoundToSquare: false,
-        isRoundToRound: false,
-        materialSizeDesc: "H",
-        materialOffsetDesc: "L",
-        finalSizeDesc: "h",
-        finalLengthDesc: "l"
-      }
+    roundToSquareOffset() {
+      let num = (this.finalSize * this.finalSize) / (this.materialSize * this.materialSize) * 1.3 * this.finalLength;
+      return Math.round((num + Number.EPSILON) * 100) / 100;
     },
-    computed: {
-      roundToRoundOffset() {
-        let num = (this.finalSize * this.finalSize) / (this.materialSize * this.materialSize) * this.finalLength;
-        return Math.round((num + Number.EPSILON) * 100) / 100;
-      },
-      roundToSquareOffset() {
-        let num = (this.finalSize * this.finalSize) / (this.materialSize * this.materialSize) * 1.3 * this.finalLength;
-        return Math.round((num + Number.EPSILON) * 100) / 100;
-      },
-      squareToRoundOffset() {
-        let num = (this.finalSize * this.finalSize) / (this.materialSize * this.materialSize) * 0.8 * this.finalLength;
-        return Math.round((num + Number.EPSILON) * 100) / 100;
-      },
-      squareToSquareOffset() {
-        let num = (this.finalSize * this.finalSize) / (this.materialSize * this.materialSize) * this.finalLength;
-        return Math.round((num + Number.EPSILON) * 100) / 100;
-      }
+    squareToRoundOffset() {
+      let num = (this.finalSize * this.finalSize) / (this.materialSize * this.materialSize) * 0.8 * this.finalLength;
+      return Math.round((num + Number.EPSILON) * 100) / 100;
     },
-    methods: {
-      reset() {
-        this.isSquareToSquare = false;
-        this.isSquareToRound = false;
-        this.isRoundToSquare = false;
-        this.isRoundToRound = false;
-      },
-      setSquareToSquare() {
-        this.reset();
-        this.isSquareToSquare = true;
-        this.materialSizeDesc = "H";
-        this.finalSizeDesc = "h";
-      },
-      setSquareToRound() {
-        this.reset();
-        this.isSquareToRound = true;
-        this.materialSizeDesc = "H";
-        this.finalSizeDesc = "d";
-      },
-      setRoundToSquare() {
-        this.reset();
-        this.isRoundToSquare = true;
-        this.materialSizeDesc = "D";
-        this.finalSizeDesc = "h";
-      },
-      setRoundToRound() {
-        this.reset();
-        this.isRoundToRound = true;
-        this.materialSizeDesc = "D";
-        this.finalSizeDesc = "d";
-      }
+    squareToSquareOffset() {
+      let num = (this.finalSize * this.finalSize) / (this.materialSize * this.materialSize) * this.finalLength;
+      return Math.round((num + Number.EPSILON) * 100) / 100;
+    }
+  },
+  methods: {
+    reset() {
+      this.isSquareToSquare = false;
+      this.isSquareToRound = false;
+      this.isRoundToSquare = false;
+      this.isRoundToRound = false;
+    },
+    setSquareToSquare() {
+      this.reset();
+      this.isSquareToSquare = true;
+      this.materialSizeDesc = "H";
+      this.finalSizeDesc = "h";
+    },
+    setSquareToRound() {
+      this.reset();
+      this.isSquareToRound = true;
+      this.materialSizeDesc = "H";
+      this.finalSizeDesc = "d";
+    },
+    setRoundToSquare() {
+      this.reset();
+      this.isRoundToSquare = true;
+      this.materialSizeDesc = "D";
+      this.finalSizeDesc = "h";
+    },
+    setRoundToRound() {
+      this.reset();
+      this.isRoundToRound = true;
+      this.materialSizeDesc = "D";
+      this.finalSizeDesc = "d";
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>
-  h3{
-    text-align: center;
-  }
-  .variants{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .variants__variant{
-    position: relative;
-    margin: 0 5px;
-    width: 60px;
-    /*height: 60px;*/
-    padding-bottom: 60px;
-    font-size: 0;
-    border: 1px solid #999;
-    border-radius: 10px;
+h3{
+  text-align: center;
+}
+.variants{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.variants__variant{
+  position: relative;
+  margin: 0 5px;
+  width: 60px;
+  height: 60px;
+  font-size: 0;
+  border: 1px solid #999;
+  border-radius: 10px;
 
-    &::before,
-    &::after{
-      content: '';
-      position: absolute;
-      display: block;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      margin: auto;
-      /*box-shadow: 0 0 1px 1px #000;*/
-      border: 1px solid #000;
-    }
+  &:hover{
+    cursor: pointer;
+  }
+}
+.variants__variant--selected{
+  border-color: transparent;
+  box-shadow: 0 0 3px 1px #20446d;
+}
+.variants__variant--s2r{
 
-    &::before{
-      width: 60%;
-      height: 60%;
-    }
+  &::after{
+    border-radius: 50%;
+  }
+}
+.variants__variant--r2s{
 
-    &::after{
-      width: 30%;
-      height: 30%;
-    }
+  &::before{
+    border-radius: 50%;
   }
-  .variants__variant--selected{
-    border-color: transparent;
-    box-shadow: 0 0 3px 1px #20446d;
-  }
-  .variants__variant--s2r{
+}
+.variants__variant--r2r{
 
-    &::after{
-      border-radius: 50%;
-    }
+  &::after{
+    border-radius: 50%;
   }
-  .variants__variant--r2s{
 
-    &::before{
-      border-radius: 50%;
-    }
+  &::before{
+    border-radius: 50%;
   }
-  .variants__variant--r2r{
+}
+.sketch{
+  display: block;
+  margin: 1rem auto 0;
+  width: 300px;
+}
+.sketch__original{
 
-    &::after{
-      border-radius: 50%;
-    }
+}
+.sketch__offset{
+}
+.sketch__new{
+}
+.sketch__descSizeOriginal{
 
-    &::before{
-      border-radius: 50%;
-    }
-  }
-  .sketch{
-    margin: 2rem auto;
-    display: flex;
-    width: auto;
-    justify-content: center;
-    align-items: center;
+}
+.sketch__descSizeFinal{
 
-    .desc{
-      position: absolute;
-      font-size: 1.2rem;
-    }
-  }
-  .sketch__original{
-    position: relative;
-    margin-left: 2rem;
-    width: 7rem;
-    height: 3rem;
-    border: 2px solid #666;
+}
+.sketch__descLengthFinal{
 
-    .desc{
-      left: -1.4rem;
-      top: 0.8rem;
-    }
-  }
-  .sketch__offset{
-    position: relative;
-    width: 2rem;
-    height: 3rem;
-    border: 2px dashed #999;
-    border-left: 0;
+}
+.sketch__descOffset{
 
-    .desc{
-      bottom: -1.4rem;
-      left: 0.8rem;
-    }
-  }
-  .sketch__new{
-    position: relative;
-    left: -2rem;
-    width: 6rem;
-    height: 1rem;
-    border: 2px solid #666;
-    border-left: 0;
+}
+.inputs{
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.inputs__item{
+  margin: 0 auto;
+  padding-right: 2rem;
+  display: flex;
+}
+.inputs__item + .inputs__item{
+  margin-top: 1.2rem;
+}
+.inputs__desc{
+  font-size: 1.8rem;
+  line-height: 2rem;
+  margin-right: 0.5rem;
+  min-width: 1.2rem;
+}
+.final{
+  margin: 2rem auto 0;
+  text-align: center;
+  font-size: 3rem;
 
-    .desc--length{
-      top: -1.4rem;
-      right: 2rem;
-    }
-    .desc--size{
-      top: -0.2rem;
-      right: -1.2rem;
-    }
-  }
-  .inputs{
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-  }
-  .inputs__item{
-    margin: 0 auto;
-    padding-right: 2rem;
-    display: flex;
-  }
-  .inputs__item + .inputs__item{
-    margin-top: 1.2rem;
-  }
-  .inputs__desc{
-    font-size: 1.8rem;
-    line-height: 2rem;
-    margin-right: 0.5rem;
-    min-width: 1.2rem;
-  }
-  .final{
-    margin: 2rem auto 0;
-    text-align: center;
+  span{
     font-size: 3rem;
-
-    span{
-      font-size: 3rem;
-    }
   }
+}
 </style>
