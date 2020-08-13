@@ -6,7 +6,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
     <link rel="manifest" href="/icons/site.webmanifest">
     <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#5bbad5">
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="/favicon.ico">
     <meta name="apple-mobile-web-app-title" content="Blacksmithing">
     <meta name="application-name" content="Blacksmithing">
     <meta name="msapplication-TileColor" content="#ffc40d">
@@ -17,12 +17,5 @@
   <body {{ BODY_ATTRS }}>
   <noscript>Sorry, this page does not work without Javascript :(</noscript>
     {{ APP }}
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-          navigator.serviceWorker.register('/sw.js');
-        });
-      }
-    </script>
   </body>
 </html>
