@@ -1,6 +1,5 @@
 <template>
-  <div class="container">
-    <nuxt-link to="/">Home</nuxt-link>
+  <article>
     <h1>Osazení</h1>
     <h3>Varianty osazení</h3>
     <div class="variants">
@@ -11,9 +10,9 @@
         <svg id="svg_s2s" viewBox="0 0 100 100"
              xmlns="http://www.w3.org/2000/svg">
           <rect class="outer" height="60" width="60" y="20" x="20"
-                fill-opacity="0" stroke-width="1.5" stroke="#000"/>
+                fill-opacity="0" stroke-width="2"/>
           <rect class="inner" height="30" width="30" y="35" x="35"
-                fill-opacity="0" stroke-width="1.5" stroke="#000"/>
+                fill-opacity="0" stroke-width="2"/>
         </svg>
       </div>
       <div class="variants__variant variants__variant--s2r"
@@ -23,8 +22,8 @@
         <svg id="svg_s2r" viewBox="0 0 100 100"
              xmlns="http://www.w3.org/2000/svg">
           <rect class="outer" height="60" width="60" y="20" x="20"
-                fill-opacity="0" stroke-width="1.5" stroke="#000"/>
-          <ellipse stroke="#000" stroke-width="1.5" cx="50" cy="50"
+                fill-opacity="0" stroke-width="2"/>
+          <ellipse stroke-width="2" cx="50" cy="50"
                    class="inner" rx="15" ry="15" fill-opacity="0"/>
         </svg>
       </div>
@@ -34,10 +33,10 @@
         > H
         <svg id="svg_r2s" viewBox="0 0 100 100"
              xmlns="http://www.w3.org/2000/svg">
-          <ellipse stroke="#000" stroke-width="1.5" cx="50" cy="50"
+          <ellipse stroke-width="2" cx="50" cy="50"
                    class="outer" rx="30" ry="30" fill-opacity="0"/>
           <rect class="inner" height="30" width="30" y="35" x="35"
-                fill-opacity="0" stroke-width="1.5" stroke="#000"/>
+                fill-opacity="0" stroke-width="2"/>
         </svg>
       </div>
       <div class="variants__variant variants__variant--r2r"
@@ -46,22 +45,22 @@
         K
         <svg id="svg_r2r" viewBox="0 0 100 100"
              xmlns="http://www.w3.org/2000/svg">
-          <ellipse stroke="#000" stroke-width="1.5" cx="50" cy="50"
+          <ellipse stroke-width="2" cx="50" cy="50"
                    class="outer" rx="30" ry="30" fill-opacity="0"/>
-          <ellipse stroke="#000" stroke-width="1.5" cx="50" cy="50"
+          <ellipse stroke-width="2" cx="50" cy="50"
                    class="inner" rx="15" ry="15" fill-opacity="0"/>
         </svg>
       </div>
     </div>
     <svg class="sketch" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
-      <rect class="sketch__offset" height="48" width="30" y="10" x="163" stroke-opacity="null" fill-opacity="0" stroke-width="1.5" stroke="#333" stroke-dasharray="6,6" fill="#fff"/>
-      <rect class="sketch__new" height="48" width="112" y="10" x="51" stroke-opacity="null" fill-opacity="0" stroke-width="1.5" stroke="#000" fill="#fff"/>
-      <rect class="sketch__original" height="20" width="86" y="24" x="163" stroke-opacity="null" fill-opacity="0" stroke-width="1.5" stroke="#000" fill="#fff"/>
+      <rect class="sketch__offset" height="48" width="30" y="10" x="163" stroke-opacity="null" fill-opacity="0" stroke-width="1.5" stroke-dasharray="6,6"/>
+      <rect class="sketch__new" height="48" width="112" y="10" x="51" stroke-opacity="null" fill-opacity="0" stroke-width="1.5" />
+      <rect class="sketch__original" height="20" width="86" y="24" x="163" stroke-opacity="null" fill-opacity="0" stroke-width="1.5"/>
 
-      <text class="sketch__descSizeOriginal" y="42" x="25" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">{{ materialSizeDesc }}</text>
-      <text class="sketch__descSizeFinal" y="42" x="260" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">{{ finalSizeDesc }}</text>
-      <text class="sketch__descLengthFinal" y="20" x="214" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">{{ finalLengthDesc }}</text>
-      <text class="sketch__descOffset" y="84" x="172" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">{{ materialOffsetDesc }}</text>
+      <text class="sketch__descSizeOriginal" y="42" x="25" fill-opacity="null" stroke-opacity="null" stroke-width="0" >{{ materialSizeDesc }}</text>
+      <text class="sketch__descSizeFinal" y="42" x="260" fill-opacity="null" stroke-opacity="null" stroke-width="0" >{{ finalSizeDesc }}</text>
+      <text class="sketch__descLengthFinal" y="20" x="214" fill-opacity="null" stroke-opacity="null" stroke-width="0" >{{ finalLengthDesc }}</text>
+      <text class="sketch__descOffset" y="84" x="172" fill-opacity="null" stroke-opacity="null" stroke-width="0">{{ materialOffsetDesc }}</text>
     </svg>
     <div class="inputs">
       <div class="inputs__item">
@@ -87,14 +86,13 @@
       <span v-if="isRoundToRound">{{ roundToRoundOffset }}</span>
       mm
     </div>
-  </div>
+  </article>
 </template>
 
 <script>
 import InputPlusMinus from "@/components/InputPlusMinus";
 
 export default {
-  name: 'App',
   components: {
     InputPlusMinus
   },
@@ -181,7 +179,7 @@ h3{
   width: 60px;
   height: 60px;
   font-size: 0;
-  border: 1px solid #999;
+  border: 1px solid var(--button-border-color);
   border-radius: 10px;
 
   &:hover{
@@ -190,7 +188,7 @@ h3{
 }
 .variants__variant--selected{
   border-color: transparent;
-  box-shadow: 0 0 3px 1px #20446d;
+  box-shadow: 0 0 4px 2px #993333;
 }
 .variants__variant--s2r{
 

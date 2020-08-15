@@ -1,6 +1,11 @@
 <template>
-  <div>
-  <h1>Blacksmithing</h1>
+  <article>
+
   <nuxt-link to="/shouldering/">Shouldering</nuxt-link>
-  </div>
+  </article>
 </template>
+
+<script>
+export default {
+}
+</script>
