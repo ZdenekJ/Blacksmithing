@@ -1,11 +1,13 @@
 <template>
   <article>
-
-  <nuxt-link to="/shouldering/">Shouldering</nuxt-link>
+    <appLinks></appLinks>
   </article>
 </template>
 
 <script>
+import appLinks from "@/components/appLinks";
+
 export default {
+  components: { appLinks }
 }
 </script>
