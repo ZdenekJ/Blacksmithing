@@ -1,6 +1,13 @@
 <template>
-  <div>
-  <h1>Blacksmithing</h1>
-  <nuxt-link to="/shouldering/">Shouldering</nuxt-link>
-  </div>
+  <article>
+    <appLinks></appLinks>
+  </article>
 </template>
+
+<script>
+import appLinks from "@/components/appLinks";
+
+export default {
+  components: { appLinks }
+}
+</script>
