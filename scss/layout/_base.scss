@@ -42,9 +42,10 @@ body{
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
+  color: var(--text-color-main);
   font-family: Helvetica, Arial, sans-serif;
   background-color: var(--background-color-main);
-  color: var(--text-color-main);
 
   svg{
     fill: currentColor;
@@ -57,7 +58,7 @@ body{
   box-sizing: inherit;
 }
 article{
+  max-width: 50rem;
   margin: 0 auto;
   padding: 1rem;
-  max-width: 50rem;
 }

@@ -1,12 +1,21 @@
 <template>
   <div>
     <ul>
-      <li><nuxt-link to="/">Home page</nuxt-link></li>
-      <li><nuxt-link to="/shouldering">Shouldering</nuxt-link></li>
+      <li @click="closeMenu"><nuxt-link to="/">Home page</nuxt-link></li>
+      <li @click="closeMenu"><nuxt-link to="/shouldering">Shouldering</nuxt-link></li>
     </ul>
   </div>
 </template>
+<script>
 
+export default {
+  methods:{
+    closeMenu() {
+      this.$store.commit('menu/close');
+    }
+  }
+}
+</script>
 <style scoped>
 ul{
   margin: 0;

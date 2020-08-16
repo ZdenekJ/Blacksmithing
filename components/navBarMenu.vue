@@ -1,6 +1,6 @@
 <template>
   <div class="menu">
-    <div class="menu__button" :class="{'menu__button--close' : showMenu}" @click="showMenu = !showMenu">
+    <div class="menu__button" :class="{'menu__button--close' : showMenu}" @click="toggleMenu">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <line class="menu__line menu__line--1" stroke-width="2"
               stroke-linecap="round" x1="0" y1="3"
@@ -23,12 +23,24 @@
 
 <script>
 import appLinks from "@/components/appLinks";
+import {mapGetters} from "vuex";
 
 export default {
   components: {appLinks},
-  data: function () {
-    return {
-      showMenu: false
+  computed: {
+    ...mapGetters({
+      showMenu: 'menu/show'
+      })
+  },
+  methods:{
+    openMenu() {
+      this.$store.commit('menu/open');
+    },
+    closeMenu() {
+      this.$store.commit('menu/close');
+    },
+    toggleMenu() {
+      this.$store.commit('menu/toggle');
     }
   }
 }
