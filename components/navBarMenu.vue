@@ -16,6 +16,7 @@
     <transition name="menuShow">
       <div class="menu__popup" v-show="showMenu">
         <appLinks></appLinks>
+        <colorModeToggle></colorModeToggle>
       </div>
     </transition>
   </div>
@@ -23,10 +24,11 @@
 
 <script>
 import appLinks from "@/components/appLinks";
+import colorModeToggle from "@/components/colorModeToggle";
 import {mapGetters} from "vuex";
 
 export default {
-  components: {appLinks},
+  components: {appLinks, colorModeToggle},
   computed: {
     ...mapGetters({
       showMenu: 'menu/show'
@@ -85,10 +87,6 @@ export default {
   border-bottom: 1px solid var(--text-color-main);
   border-left: 1px solid var(--text-color-main);
   background: var(--background-color-main);
-
-  * + *{
-    border-top: 1px solid  var(--text-color-main);
-  }
 }
 
 .menuShow-enter-active, .menuShow-leave-active {
@@ -99,7 +97,7 @@ export default {
   transform: translateX(100%);
 }
 .menu__line{
-  transition: all 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
   transform-origin: left center;
 }
 .menu__button--close{
@@ -122,9 +120,11 @@ export default {
 
 .menu__popup{
 
-  * + *{
+  li + li,
+  .colorMode{
     border-top: 1px solid  var(--text-color-main);
   }
+
 }
 
 </style>
