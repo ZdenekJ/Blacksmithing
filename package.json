@@ -1,6 +1,6 @@
 {
   "name": "blacksmithing",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@nuxt/types": "^2.13.3",
-    "@nuxtjs/pwa": "^2.6.0",
+    "@nuxtjs/pwa": "^3.0.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
     "gulp-clean-css": "^4.3.0",
