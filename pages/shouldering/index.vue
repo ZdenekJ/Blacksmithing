@@ -1,7 +1,7 @@
 <template>
   <article>
-    <h1>Osazení</h1>
-    <h3>Varianty osazení</h3>
+    <h1>{{ $t("shouldering.shouldering") }}</h1>
+    <h3>{{ $t("shouldering.variants") }}</h3>
     <div class="variants">
       <div class="variants__variant variants__variant--s2s"
            @click="setSquareToSquare"

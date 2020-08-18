@@ -1,0 +1,18 @@
+{
+  "menu" : {
+    "open" : "Menu",
+    "close" : "Close"
+  },
+  "darkModeToggle" : {
+    "dark" : "Dark mode",
+    "light" : "Light mode"
+  },
+  "pages" : {
+    "hp" : "Home page",
+    "shouldering" : "Shouldering"
+  },
+  "shouldering" : {
+    "shouldering" : "Shouldering",
+    "variants" : "Variants"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "menu" : {
+    "open" : "Menu",
+    "close" : "Zavřít"
+  },
+  "darkModeToggle" : {
+    "dark" : "Tmavý vzhled",
+    "light" : "Světlý vzhled"
+  },
+  "pages" : {
+    "hp" : "Hlavní stránka",
+    "shouldering" : "Osazování"
+  },
+  "shouldering" : {
+    "shouldering" : "Osazování",
+    "variants" : "Varianty"
+  }
+}
