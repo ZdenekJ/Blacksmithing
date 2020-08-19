@@ -1,8 +1,8 @@
 <template>
   <div>
     <ul>
-      <li @click="closeMenu"><nuxt-link to="/">Home page</nuxt-link></li>
-      <li @click="closeMenu"><nuxt-link to="/shouldering">Shouldering</nuxt-link></li>
+      <li @click="closeMenu"><nuxt-link to="/">{{ $t("pages.hp") }}</nuxt-link></li>
+      <li @click="closeMenu"><nuxt-link to="/shouldering">{{ $t("pages.shouldering") }}</nuxt-link></li>
     </ul>
   </div>
 </template>

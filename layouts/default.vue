@@ -12,6 +12,7 @@ export default {
   components: {navBar},
   mounted() {
     const currentTheme = localStorage.getItem("theme");
+    const currentLanguage = localStorage.getItem("language");
 
     // If the current theme in localStorage is "darkMode"...
     if (currentTheme === "darkMode")
@@ -23,6 +24,15 @@ export default {
     {
       document.body.classList.add("lightMode");
       document.body.classList.remove("darkMode");
+    }
+
+    if(currentLanguage !== null)
+    {
+      this.$i18n.locale = currentLanguage;
+    }
+    else
+    {
+      this.$i18n.locale = navigator.language.split('-')[0];
     }
   }
 }
