@@ -25,7 +25,6 @@ export default {
       document.body.classList.add("lightMode");
       document.body.classList.remove("darkMode");
     }
-
     if(currentLanguage !== null)
     {
       this.$i18n.locale = currentLanguage;

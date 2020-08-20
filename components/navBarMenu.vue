@@ -33,6 +33,7 @@ import {mapGetters} from "vuex";
 
 export default {
   components: {appLinks, colorModeToggle, languageSwitch},
+
   computed: {
     ...mapGetters({
       showMenu: 'menu/show'
