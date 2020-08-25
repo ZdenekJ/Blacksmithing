@@ -12,11 +12,13 @@
               stroke-linecap="round" x1="0" y1="21"
               x2="24" y2="21"></line>
       </svg>
-      <span v-if="!showMenu">Menu</span><span v-else>Close</span></div>
+      <span v-if="!showMenu">{{ $t("menu.open")}}</span>
+      <span v-else>{{ $t("menu.close")}}</span></div>
     <transition name="menuShow">
       <div class="menu__popup" v-show="showMenu">
         <appLinks></appLinks>
         <colorModeToggle></colorModeToggle>
+        <languageSwitch></languageSwitch>
       </div>
     </transition>
   </div>
@@ -25,10 +27,13 @@
 <script>
 import appLinks from "@/components/appLinks";
 import colorModeToggle from "@/components/colorModeToggle";
+import languageSwitch from "@/components/languageSwitch";
+
 import {mapGetters} from "vuex";
 
 export default {
-  components: {appLinks, colorModeToggle},
+  components: {appLinks, colorModeToggle, languageSwitch},
+
   computed: {
     ...mapGetters({
       showMenu: 'menu/show'

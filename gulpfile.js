@@ -12,7 +12,7 @@ const gulp = require('gulp');									// Vlastní GULP
 const sass = require('gulp-dart-sass');						// Zpracování SCSS > CSS
 const sourcemaps = require('gulp-sourcemaps');				// Sourcemaps
 const cleanCSS = require('gulp-clean-css');					// Minifikace CSS
-const autoprefixer = require('gulp-autoprefixer');			// automatické doplnění / odstranění prohlížečových prefixů vlastností podle definice v package.json sekce browserslist
+const autoprefixer = require('gulp-autoprefixer');			// automatické doplnění / odstranění prohlížečových prefixů vlastností podle definice v content-en.json sekce browserslist
 
 function scssToCssMain()
 {
